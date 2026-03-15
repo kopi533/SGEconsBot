@@ -10,7 +10,12 @@ st.title("🇸🇬 H2 Economics Assistant")
 st.caption("Based on the SEAB 9570 Syllabus")
 
 # 2. Setup (Hardcode your key or use a text input for safety)
-api_key = "AIzaSyCaWopHUi2yTZd5gF5M9xIYJrqTwnfd4Ak" 
+# Check if we are in the cloud (Streamlit Cloud)
+if "GOOGLE_API_KEY" in st.secrets:
+    api_key = st.secrets["GOOGLE_API_KEY"]
+else:
+    # This is for your local testing only
+    api_key = "AIzaSyCaWopHUi2yTZd5gF5M9xIYJrqTwnfd4Ak"
 
 # 3. Load the Knowledge (Connects to the database you already built)
 embeddings = GoogleGenerativeAIEmbeddings(model="gemini-embedding-2-preview", google_api_key=api_key)
